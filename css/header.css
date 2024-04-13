@@ -1,0 +1,104 @@
+/* ========================================= Header styling ================================= */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #000;
+    /* height: 100vh; */
+    /* width: 100vw; */
+    color: white;
+}
+
+
+header{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background-color: #505050;
+    font-size: 20px;
+}
+
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+header nav div a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* display: inline-block; */
+    color: white;
+    text-decoration: none;
+    height: 50px;
+    padding: 0 10px;
+}
+
+header nav div a.active{
+    background-color: #000000;
+}
+
+.nav-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-section input {
+    height: 40px;
+    width: 100px;
+    border-radius: 50px;
+    outline: none;
+    border: 1px solid black;
+    cursor: pointer;
+}
+/* ====================================== end =================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================= Footer css ================================== */
+footer{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background-color: #3b3b3b;
+}
+
+footer > div {
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+}
+
+footer > div > div > a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ========================================= end ==================================== */
