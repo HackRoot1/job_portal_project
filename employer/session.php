@@ -2,14 +2,14 @@
     session_start();
     // Redirect to login page if the user is not logged in
     if(!isset($_SESSION['username'])){
-        header("Location: ./login.php");
+        header("Location: ../login.php?role=employee");
         exit();
     }
 
     // Logout functionality
     if(isset($_POST['logout'])) {
         session_destroy();
-        header("Location: ./login.php");
+        header("Location: ../login.php?role=employee");
         exit();
     }
 
@@ -27,7 +27,7 @@
     // Check user role
     if($users_data['role'] != 'employer'){
         session_destroy();
-        header("Location: ./login.php");
+        header("Location: ../login.php?role=employee");
         exit();
     }
 ?>

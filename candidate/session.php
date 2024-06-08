@@ -2,13 +2,16 @@
     // Start session and redirect if user is not logged in
     session_start();
     if(!isset($_SESSION['username'])){
-        redirectToLogin();
+        session_destroy();
+        header("Location: ../login.php?role=candidate");
+        exit();
     }
 
     // Handle logout request
     if(isset($_POST['logout'])) {
         session_destroy();
-        redirectToLogin();
+        header("Location: ../login.php?role=candidate");
+        exit();
     }
 
     // Fetch user data from the database
@@ -23,11 +26,7 @@
     // Check user role and redirect if not candidate
     if($users_data['role'] != 'candidate'){
         session_destroy();
-        redirectToLogin();
-    }
-
-    // Function to redirect to login page
-    function redirectToLogin() {
-        header("Location: ../login.php");
+        header("Location: ../login.php?role=candidate");
         exit();
     }
+
