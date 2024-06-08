@@ -1,33 +1,66 @@
-
 /* ======================================== Main section - Form =============================== */
-main#login-page {
-    height: calc(100dvh - 200px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-main#login-page form{
+#login-page {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    min-height: calc(100vh - 100px);
+    background: url(../assets/images/p4.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#login-page .main-section {
+    background-color: rgba(179, 179, 179, 0.73);
+    width: 80%;
+    height: 80vh;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+    
+#login-page .main-section .illustration {
+    width: 50%;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page .main-section .illustration img {
+    width: 70%;
+}
+    
+#login-page form{
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: rgba(179, 179, 179, 0.73);
-    min-height: 500px;
-    min-width: 500px;
+    gap: 20px;
+    width: 50%;
     border-radius: 10px;
 }
+#login-page form > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+} 
 
+#login-page form .title {
+    font-size: 30px;
+    font-weight: 600;
+}
 
-main#login-page form div label {
+#login-page form div label {
     display: inline-block;
-    width: 150px;
+    width: 100px;
 }
 
 
-main#login-page form div input {
+#login-page form div input {
     width: 200px;
     height: 40px;
     border: none;
@@ -36,23 +69,46 @@ main#login-page form div input {
     border-bottom: 1px solid black;
     color: white;
     padding: 5px 15px;
+    font-size: 18px;
 }
 
 
-main#login-page form div input[type = 'submit'], main#login-page form div input[type = 'reset'] {
+#login-page form div input[type = 'submit'], #login-page form div input[type = 'reset'] {
     width: 100px;
     height: 35px;
-    background-color: #f0f0f0;
-    border-radius: 50px;
-    color: black;
-    border: 1px solid black;
-    outline: black;
+    background-color: #711eb5;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
-main#login-page form div input[type = 'submit']:hover, main#login-page form div input[type = 'reset']:hover {
+#login-page form div input[type = 'submit']:hover, #login-page form div input[type = 'reset']:hover {
     background-color: #c2c2c2;
-    cursor: pointer;
 }
 
 
 /* =================================== end =============================== */
+
+
+#error {
+    position: absolute;
+    top: 70px;
+    background-color: #ff0000;
+    height: 40px;
+    width: fit-content;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: 600;
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(1, 5, 255);
+}

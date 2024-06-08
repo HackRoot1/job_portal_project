@@ -78,27 +78,11 @@
     <!-- ================= header stylesheet ================= -->
     <link rel="stylesheet" href="./css/header.css">
     <!-- ================== main stylesheet ================= -->
-    <link rel="stylesheet" href="./css/main.css">
+    <!-- <link rel="stylesheet" href="./css/main.css"> -->
     <link rel="stylesheet" href="./css/login.css">
     <!-- ==================== Icons link ==================== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-
-    <style>
-        #error {
-            background-color: #ff0000;
-            height: 40px;
-            width: fit-content;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 20px;
-            font-size: 20px;
-            font-weight: 600;
-            display: none;
-        }
-    </style>
 </head>
 <body>
     
@@ -131,6 +115,10 @@
         </div>
 
         <section class = "main-section">
+            <div class="illustration">
+                <img src="./assets/images/ima.png" alt="">
+            </div>
+
             <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
                 <div class = "title">Login Page</div>
 

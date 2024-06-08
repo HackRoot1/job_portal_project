@@ -29,18 +29,33 @@
         $employer_id = $_POST['employer_id'];
         $min_job_exp = $_POST['min_job_exp'];
         $max_job_exp = $_POST['max_job_exp'];
+        $job_post_id = $_POST['job_id'];
 
         if(isset($_POST['submit'])) {
-            $sql = "INSERT INTO posted_jobs(employer_id, job_title, description, budget_ctc, job_type, job_location, min_job_exp, max_job_exp) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        } elseif(isset($_POST['update'])) {
-            $sql = "UPDATE posted_jobs SET employer_id = ?, job_title = ?, description = ?, budget_ctc = ?, job_type = ?, job_location = ?, min_job_exp = ?, max_job_exp = ? WHERE id = ?";
-        }
+            $sql = "INSERT INTO 
+                        posted_jobs
+                        (employer_id, job_title, description, budget_ctc, job_type, job_location, min_job_exp, max_job_exp) 
+                    VALUES 
+                        (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("issssssi", $employer_id, $job_title, $job_desc, $job_budget, $job_type, $job_location, $min_job_exp, $max_job_exp);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("issssssi", $employer_id, $job_title, $job_desc, $job_budget, $job_type, $job_location, $min_job_exp, $max_job_exp);
-        if(isset($_POST['update'])) {
-            $stmt->bind_param("i", $job_id);
+        } elseif(isset($_POST['update'])) {
+            $sql = "UPDATE 
+                        posted_jobs 
+                    SET 
+                        employer_id = ?, 
+                        job_title = ?, 
+                        description = ?, 
+                        budget_ctc = ?, 
+                        job_type = ?, 
+                        job_location = ?, 
+                        min_job_exp = ?, 
+                        max_job_exp = ? 
+                    WHERE 
+                        id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("issssssii", $employer_id, $job_title, $job_desc, $job_budget, $job_type, $job_location, $min_job_exp, $max_job_exp, $job_post_id);
         }
         $stmt->execute();
         $stmt->close();
