@@ -29,7 +29,7 @@
     $stmt2->close();
 
     // Include the main header
-    $header_data = ['id' => 2, 'title' => 'Searched Jobs'];
+    $header_data = ['id' => 2, 'title' => 'Searched Jobs', 'css' => 'searched_jobs'];
     include("./main_header.php");
 ?>
 

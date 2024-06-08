@@ -53,6 +53,11 @@
 
     // $header_data = ['id' => 3, 'title' => 'Candidate Registration In Page'];    
     // require('./header.php'); 
+
+    if(isset($_GET['role'])) {
+        $uRole = $_GET['role'];
+    }
+    
 ?>
 
 
@@ -105,6 +110,7 @@
                 <!-- CSRF Token -->
                 <input type="hidden" name="csrf_token" value="<?= $token ?>">
 
+                <input type="hidden" name = "role" id = "role" value = "<?= $uRole ?? "" ?>">
                 <div>
                     <label for="current-ctc">Current CTC</label>
                     <input type="text" name = "current_ctc" id = "current-ctc"><span>lakhs</span>

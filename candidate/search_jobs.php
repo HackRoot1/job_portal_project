@@ -52,7 +52,7 @@
 
         
     // Include the main header
-    $header_data = ['id' => 2, 'title' => 'Search Jobs'];
+    $header_data = ['id' => 2, 'title' => 'Search Jobs', 'css' => 'search_jobs'];
     include("./main_header.php");
 ?>
 

@@ -1,0 +1,95 @@
+
+/* =========================================== employee registration page ==================================== */
+main#registration-section {
+    width: 40%;
+    margin: 20px 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+main#registration-section form {
+    width: 100%;
+    background-color: #737373;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+main#registration-section form > div {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+main#registration-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    min-width: 200px;
+}
+
+main#registration-section .gender-cell > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+main#registration-section .gender-cell > div label{
+    min-width: 50px;
+}
+
+main#registration-section .gender-cell > div input{
+    height: 20px;
+}
+
+
+main#registration-section input[type="text"],
+main#registration-section input[type="email"],
+main#registration-section input[type="password"],
+main#registration-section input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+main#registration-section input[type="text"]:focus,
+main#registration-section input[type="email"]:focus,
+main#registration-section input[type="password"]:focus,
+main#registration-section input[type="date"]:focus {
+    border-color: #007bff;
+}
+
+main#registration-section input[type="submit"],
+main#registration-section input[type="reset"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+main#registration-section input[type="submit"]:hover,
+main#registration-section input[type="reset"]:hover {
+    background-color: #0056b3;
+}
+
+main#registration-section .checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+main#registration-section .checkbox-container input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* =============================================== end ======================================= */

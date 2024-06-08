@@ -32,15 +32,22 @@
                 $_SESSION['username'] = $username;
                 if($role == "employee") {
                     header("Location: ./employer/dashboard.php");
+                    exit();
                 }else {
                     header("Location: ./candidate/dashboard.php");
+                    exit();
                 }
-                exit();
             } else {
-                echo "Incorrect username or password. Please try again.";
-            }
+                echo "<script>
+                        document.getElementById('error').style.display = 'block';
+                        document.getElementById('error').innerHtml = 'Incorrect username or password. Please try again.';    
+                    </script>";
+                }
         } else {
-            echo "User not found. Please try again.";
+            echo "<script>
+                        document.getElementById('error').style.display = 'block';
+                    document.getElementById('error').innerHtml = 'Incorrect username or password. Please try again.';    
+                </script>";
         }
 
         // Close statement and connection
@@ -72,9 +79,26 @@
     <link rel="stylesheet" href="./css/header.css">
     <!-- ================== main stylesheet ================= -->
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/login.css">
     <!-- ==================== Icons link ==================== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
+
+    <style>
+        #error {
+            background-color: #ff0000;
+            height: 40px;
+            width: fit-content;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 20px;
+            font-weight: 600;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     
@@ -102,8 +126,13 @@
 
     <main id = "login-page">
         
+        <div id="error">
+            Incorrect username or password. Please try again.
+        </div>
+
         <section class = "main-section">
             <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
+                <div class = "title">Login Page</div>
 
                 <div>
                     <label for="username">Username</label>
@@ -125,7 +154,8 @@
                 </div>
 
                 <div>
-                    <a href="./registration.php">
+                    Don't have Account? 
+                    <a href="./registration.php?role=<?= $uRole ?? "" ?>">
                         Create Account
                     </a>
                 </div>

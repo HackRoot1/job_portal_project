@@ -50,7 +50,7 @@
     $token = bin2hex(random_bytes(32));
     $_SESSION['csrf_token'] = $token;
     
-    $header_data = ['id' => 2, 'title' => isset($_GET['job_id']) ? 'Update Job' : 'Post New Job'];
+    $header_data = ['id' => 2, 'title' => isset($_GET['job_id']) ? 'Update Job' : 'Post New Job', 'css' => 'post_new_job'];
     require('./header.php');
 ?>
 

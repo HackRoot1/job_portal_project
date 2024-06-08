@@ -27,7 +27,7 @@
     $result2 = $stmt2->get_result();
     
     // Include the main header
-    $header_data = ['id' => 3, 'title' => 'My Applied Jobs'];
+    $header_data = ['id' => 3, 'title' => 'My Applied Jobs', 'css' => 'my_jobs'];
     include("./main_header.php");
 ?>
 

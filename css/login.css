@@ -1,0 +1,58 @@
+
+/* ======================================== Main section - Form =============================== */
+main#login-page {
+    height: calc(100dvh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+main#login-page form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(179, 179, 179, 0.73);
+    min-height: 500px;
+    min-width: 500px;
+    border-radius: 10px;
+}
+
+
+main#login-page form div label {
+    display: inline-block;
+    width: 150px;
+}
+
+
+main#login-page form div input {
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    color: white;
+    padding: 5px 15px;
+}
+
+
+main#login-page form div input[type = 'submit'], main#login-page form div input[type = 'reset'] {
+    width: 100px;
+    height: 35px;
+    background-color: #f0f0f0;
+    border-radius: 50px;
+    color: black;
+    border: 1px solid black;
+    outline: black;
+}
+
+main#login-page form div input[type = 'submit']:hover, main#login-page form div input[type = 'reset']:hover {
+    background-color: #c2c2c2;
+    cursor: pointer;
+}
+
+
+/* =================================== end =============================== */

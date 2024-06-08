@@ -19,7 +19,7 @@
     $result = mysqli_query($conn, $sql) or die("Query Failed");
 
     // Include header file
-    $header_data = ['id' => 3, 'title' => 'Applied Employee Page'];
+    $header_data = ['id' => 3, 'title' => 'Applied Employee Page', 'css' => 'my_jobs'];
     require('./header.php');
 ?>
 

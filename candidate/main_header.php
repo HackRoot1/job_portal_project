@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <!-- ================== main stylesheet ================= -->
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/<?= $header_data['css'] ?>.css">
     <!-- ==================== Icons link ==================== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 </head>
