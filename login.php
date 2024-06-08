@@ -1,5 +1,5 @@
 <?php 
-    require("../connect.php");
+    require("./connect.php");
     session_start();
 
     // Check if form is submitted
@@ -12,6 +12,7 @@
 
         // Get username and password from the form
         $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $role = mysqli_real_escape_string($conn, $_POST['role']);
         $password = $_POST['password'];
 
         // Prepare the SQL statement to fetch user data
@@ -29,7 +30,11 @@
                 // Start session and redirect to dashboard
                 session_start();
                 $_SESSION['username'] = $username;
-                header("Location: ./dashboard.php");
+                if($role == "employee") {
+                    header("Location: ./employer/dashboard.php");
+                }else {
+                    header("Location: ./candidate/dashboard.php");
+                }
                 exit();
             } else {
                 echo "Incorrect username or password. Please try again.";
@@ -47,6 +52,11 @@
     $token = bin2hex(random_bytes(32));
     $_SESSION['csrf_token'] = $token;
 
+
+    if(isset($_GET['role'])) {
+        $uRole = $_GET['role'];
+    }
+
 ?>
 
 
@@ -59,9 +69,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employer Login Page</title>
     <!-- ================= header stylesheet ================= -->
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="./css/header.css">
     <!-- ================== main stylesheet ================= -->
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
     <!-- ==================== Icons link ==================== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
@@ -74,8 +84,8 @@
         
         <nav>
             <div><a href="#">Home</a></div>
-            <div><a href="../index.php" class="active">Log In</a></div>
-            <div><a href="../sign_up.php">Sign Up</a></div>
+            <div><a href="./index.php" class="active">Log In</a></div>
+            <div><a href="./sign_up.php">Sign Up</a></div>
             <div><a href="#">Contact Us</a></div>
         </nav>
 
@@ -98,6 +108,7 @@
                 <div>
                     <label for="username">Username</label>
                     <input type="text" name = "username" id = "username">
+                    <input type="hidden" name = "role" id = "role" value = "<?= $uRole ?? "" ?>">
                 </div>
 
                 <div>
@@ -114,7 +125,7 @@
                 </div>
 
                 <div>
-                    <a href="#">
+                    <a href="./registration.php">
                         Create Account
                     </a>
                 </div>
@@ -125,4 +136,4 @@
     <!-- ========================= End Main ========================= -->
 
 
-<?php require("../footer.php"); ?>
+<?php require("./footer.php"); ?>

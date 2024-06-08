@@ -1,0 +1,14 @@
+
+
+Note: Use ajax
+
+
+1. style on home page 
+2. style on login and registration page 
+
+3. show all errors on same page as a notification or popup 
+
+4. design profile page 
+5. design all pages for employer role.
+
+6. reduce code as possible 

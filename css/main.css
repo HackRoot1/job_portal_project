@@ -21,7 +21,7 @@ main > .main-section {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: calc(100vh - 200px);
     gap: 5%;
     font-size: 20px;
 }
@@ -47,6 +47,12 @@ main > .main-section > .box a{
 
 
 /* ======================================== Main section - Form =============================== */
+main#login-page {
+    height: calc(100dvh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 main#login-page form{
     display: flex;
     flex-direction: column;

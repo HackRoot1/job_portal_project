@@ -28,6 +28,6 @@
 
     // Function to redirect to login page
     function redirectToLogin() {
-        header("Location: ./login.php");
+        header("Location: ../login.php");
         exit();
     }
