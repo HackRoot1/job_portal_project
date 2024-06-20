@@ -281,7 +281,7 @@ $result = mysqli_query($conn, $sql) or die("Query Failed: " . mysqli_error($conn
         }
 
         .result-table-data table tbody tr td .btns {
-            background-color: #ff0000;
+            background-color: var(--c);
             color: #fff;
             padding: 5px 10px;
             border-radius: 5px;
@@ -399,8 +399,8 @@ $result = mysqli_query($conn, $sql) or die("Query Failed: " . mysqli_error($conn
                                 </td>
                                 <td>Status</td>
                                 <td>
-                                    <a class="btns" href="post_new_job.php?job_id=<?php echo $data['id']; ?>">Edit</a>
-                                    <a class="btns" href="delete_job.php?job_id=<?php echo $data['id']; ?>">Delete</a>
+                                    <a class="btns" style="--c: green" href="post_new_job.php?job_id=<?php echo $data['id']; ?>">Edit</a>
+                                    <a class="btns" style="--c: red" href="delete_job.php?job_id=<?php echo $data['id']; ?>">Delete</a>
                                 </td>
                             </tr>
 
