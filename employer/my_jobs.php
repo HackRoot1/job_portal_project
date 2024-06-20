@@ -105,6 +105,12 @@ $result = mysqli_query($conn, $sql) or die("Query Failed: " . mysqli_error($conn
             border-radius: 50px;
             cursor: pointer;
         }
+        
+        .sidebar .settings>div:hover {
+            color: #000;
+            background-color: aliceblue;
+            cursor: pointer;
+        }
         .sidebar .settings>div input {
             background-color: transparent;
             border: none;
@@ -118,11 +124,6 @@ $result = mysqli_query($conn, $sql) or die("Query Failed: " . mysqli_error($conn
             cursor: pointer;
         }
 
-        .sidebar .settings>div:hover {
-            color: #000;
-            background-color: aliceblue;
-            cursor: pointer;
-        }
         
         .sidebar .settings>div:hover a{
             color: #000;
