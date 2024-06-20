@@ -1,201 +1,294 @@
-<?php 
-    // starting connection
-    include("./connect.php");
-    session_start();
-      
+<?php
+// starting connection
+include("./connect.php");
+session_start();
 
-    if(isset($_POST['submit'])) {
 
-        // Validate CSRF token
-        if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])){
-            die("CSRF token validation failed.");
-        }
+if (isset($_POST['submit'])) {
 
-        // Storing form data in variables after sanitization
-        $current_ctc = htmlspecialchars($_POST['current_ctc']);
-        $firstName = htmlspecialchars($_POST['firstName']);
-        $lastName = htmlspecialchars($_POST['lastName']);
-        $gender = htmlspecialchars($_POST['gender']);
-        $dob = htmlspecialchars($_POST['dob']);
-        $c_no = htmlspecialchars($_POST['c_no']);
-        $current_location = htmlspecialchars($_POST['current_location']);
-        $email = htmlspecialchars($_POST['email']);
-        $username = htmlspecialchars($_POST['username']);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hashing the password
-        $role = htmlspecialchars($_POST['role']);
-
-        // Prepare the SQL statement
-        $stmt = $conn->prepare("INSERT INTO users_data (firstName, lastName, gender, contact_no, current_location, current_ctc, date_of_birth, username, email, password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssss", $firstName, $lastName, $gender, $c_no, $current_location, $current_ctc, $dob, $username, $email, $password, $role);
-
-        // Execute the statement
-        if($stmt->execute()) {
-            // Registration successful, redirect to login page or dashboard
-            header("Location: ./login.php");
-            exit();
-        } else {
-            // Registration failed, handle the error
-            echo "Error: " . $stmt->error;
-        }
-
-        // Close the statement
-        $stmt->close();
+    // Validate CSRF token
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        die("CSRF token validation failed.");
     }
-    
-    // Close the database connection
-    mysqli_close($conn);
 
-    
-    // CSRF Protection
-    $token = bin2hex(random_bytes(32));
-    $_SESSION['csrf_token'] = $token;
+    // Storing form data in variables after sanitization
+    $email = htmlspecialchars($_POST['email']);
+    $firstName = htmlspecialchars($_POST['firstName']);
+    $lastName = htmlspecialchars($_POST['lastName']);
+    $company_name = htmlspecialchars($_POST['company_name']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hashing the password
+    $role = htmlspecialchars($_POST['role']);
 
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("INSERT INTO users_data (firstName, lastName,company_name, email, password, role) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $firstName, $lastName, $company_name, $email, $password, $role);
 
-    // $header_data = ['id' => 3, 'title' => 'Candidate Registration In Page'];    
-    // require('./header.php'); 
-
-    if(isset($_GET['role'])) {
-        $uRole = $_GET['role'];
+    // Execute the statement
+    if ($stmt->execute()) {
+        // Registration successful, redirect to login page or dashboard
+        header("Location: ./login.php?role=$role");
+        exit();
+    } else {
+        // Registration failed, handle the error
+        echo "Error: " . $stmt->error;
     }
-    
+
+    // Close the statement
+    $stmt->close();
+}
+
+// Close the database connection
+mysqli_close($conn);
+
+
+// CSRF Protection
+$token = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $token;
+
+
+// $header_data = ['id' => 3, 'title' => 'Candidate Registration In Page'];    
+// require('./header.php'); 
+
+if (isset($_GET['role'])) {
+    $uRole = $_GET['role'];
+}
+
 ?>
 
 
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Registration In Page</title>
-    <!-- ================= header stylesheet ================= -->
-    <link rel="stylesheet" href="./css/header.css">
-    <!-- ================== main stylesheet ================= -->
-    <link rel="stylesheet" href="./css/registration.css">
-    <!-- ==================== Icons link ==================== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <title>Registration Page</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
 
-    
+        body {
+            height: 100dvh;
+            width: 100dvw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #252e93 60%, #7d83c2);
+            color: #fff;
+        }
+
+        main {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+        }
+
+        main>section {
+            width: 50%;
+            height: 95%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+
+
+        .illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .illustration>div {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            background-color: #dedede;
+        }
+
+        section img {
+            width: 70%;
+            height: auto;
+            filter: grayscale(0.5);
+        }
+
+
+        .registration-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .registration-section>div {
+            width: 60%;
+        }
+
+        .registration-section .title {
+            font-size: 35px;
+        }
+
+        .registration-section .info {
+            font-size: 20px;
+        }
+
+        .registration-section .form-info form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .registration-section .form-info form>div {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .registration-section .form-info form>.special {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .registration-section .form-info form>.special>div {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        form label {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        form input {
+            height: 35px;
+            width: 100%;
+            outline: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #dedede;
+        }
+
+        form input[type="submit"] {
+            background-color: #0f23ff;
+            font-size: 18px;
+            color: #dedede;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .registration-section .registration-btn {
+            display: flex;
+            gap: 10px;
+        }
+
+        .registration-section .back-btn {
+            display: flex;
+            align-items: start;
+        }
+
+        .registration-section .back-btn span {
+            background-color: #dedede;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
-    
-
-    <!-- ======================= Header section ==================== -->
-    <header>
-        
-        <nav>
-            <div><a href="#">Home</a></div>
-            <div><a href="./index.php">Log In</a></div>
-            <div><a href="./sign_up.php" class = "active">Sign Up</a></div>
-            <div><a href="#">Contact Us</a></div>
-        </nav>
-
-        <div class="header-title">Job Portal</div>
-    </header>
-    <!-- ======================= End Header ========================== -->
-
-    <!-- ======================= End Header ========================== -->
-
-
-
-
-
 
     <!-- ======================== Main section ====================== -->
 
-    <main id = "registration-section">
-        
-        <section class = "main-section">
-            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
-                
-                <div>
-                    <!-- CSRF Token -->
-                    <input type="hidden" name="csrf_token" value="<?= $token ?>">
-                    <input type="hidden" name = "role" id = "role" value = "<?= $uRole ?? "" ?>">
-                </div>
+    <main>
+        <section class="registration-section">
 
-                <div>
-                    <label for="current-ctc">Current CTC</label>
-                    <input type="text" name = "current_ctc" id = "current-ctc"><span>lakhs</span>
-                </div>
-                
-                <div>
+            <div class="title">Register</div>
+            <div class="info">Enter your details to Register on the platform</div>
+
+            <div class="form-info">
+                <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
                     <div>
-                        <label for="firstName">First Name</label>
-                        <input type="text" name = "firstName" id="firstName">
+                        <!-- CSRF Token -->
+                        <input type="hidden" name="csrf_token" value="<?= $token ?>">
+                        <input type="hidden" name="role" id="role" value="<?= $uRole ?? "" ?>">
                     </div>
 
                     <div>
-                        <label for="lastName">Last Name</label>
-                        <input type="text" name = "lastName" id="lastName">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email" id="email">
                     </div>
-                </div>
-                
 
-                <div class = "gender-cell">
-                    <label for="gender">Gender</label>
-                    <div>  
-                        <input type="radio" name="gender" value = "Male" id="male"><label for="male">Male</label>
-                        <input type="radio" name="gender" value = "Female" id="female"><label for="female">Female</label>
+                    <div class="special">
+                        <div>
+                            <label for="fname">First Name</label>
+                            <input type="text" name="firstName" id="fname">
+                        </div>
+                        <div>
+                            <label for="lname">Last Name</label>
+                            <input type="text" name="lastName" id="lname">
+                        </div>
                     </div>
-                </div>
-
-                <div>
-
                     <div>
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" name="dob" id="dob">
+                        <label for="c_name">Company Name</label>
+                        <input type="text" name="company_name" id="c_name">
                     </div>
-
-                    <div>
-                        <label for="c_no">Contact Number</label>
-                        <input type="text" name = "c_no" id="c_no">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="current_location">Current Location</label>
-                    <input type="text" name = "current_location" id="current_location">
-                </div>
-
-                <div>
-                    <div>
-                        <label for="email">Email Id</label>
-                        <input type="email" name = "email" id="email">
-                    </div>
-
-                    <div>
-                        <label for="username">Username</label>
-                        <input type="text" name = "username" id="username">
-                    </div>
-                </div>
-
-                <div>
                     <div>
                         <label for="password">Password</label>
-                        <input type="password" name = "password" id="password">
+                        <input type="password" name="password" id="password">
                     </div>
-
                     <div>
-                        <label for="re_password">Confirm Password</label>
-                        <input type="password" id="re_password">
+                        <input type="submit" name="submit" value="Submit">
                     </div>
-                </div>
 
-                <div class="checkbox-container">
-                    <input type="checkbox" name="condition" id="condition">
-                    <label for="condition">I Agree to the Terms and Conditions.</label>
-                </div>
+                </form>
+            </div>
 
+            <div class="registration-btn">
+                <span>Already Have an account? </span>
+                <a href="./login.php">Log In</a>
+            </div>
 
-                <div class = "btns">
-                    <input type="reset" value="Reset">
-                    <input type="submit" name = "submit" value="Submit">
-                </div>
+            <div class="back-btn">
+                <span>Back</span>
+            </div>
+        </section>
 
-            </form>
+        <section class="illustration">
+            <div>
+                <img src="./assets/images/ima.png" alt="">
+            </div>
         </section>
     </main>
-    <!-- ========================= End Main ========================= -->
 
 
-<?php require("./footer.php"); ?>
+    <script>
+        // go to back page logic
+        let backBtn = document.querySelector(".back-btn");
+        backBtn.addEventListener("click", goBack);
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

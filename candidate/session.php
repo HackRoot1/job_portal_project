@@ -15,9 +15,9 @@
     }
 
     // Fetch user data from the database
-    $users_query = "SELECT * FROM users_data WHERE username = ?";
+    $users_query = "SELECT * FROM users_data WHERE username = ? OR email = ?";
     $stmt = $conn->prepare($users_query);
-    $stmt->bind_param("s", $_SESSION['username']);
+    $stmt->bind_param("ss", $_SESSION['username'], $_SESSION['username']);
     $stmt->execute();
     $users_result = $stmt->get_result();
     $users_data = $users_result->fetch_assoc();
