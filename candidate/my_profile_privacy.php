@@ -2,9 +2,6 @@
     include("../connect.php");
     include("./session.php");
 
-    // $header_data = ['id' => 4, 'title' => 'Profile'];
-    // require('./header.php');
-
     if(isset($_POST['submit'])) {
 
         // Validate CSRF token

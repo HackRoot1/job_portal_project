@@ -18,9 +18,6 @@ if (isset($_GET['job_id'])) {
 $sql = "SELECT * FROM applied_jobs WHERE job_id = '{$job_id}'";
 $result = mysqli_query($conn, $sql) or die("Query Failed");
 
-// Include header file
-// $header_data = ['id' => 3, 'title' => 'Applied Employee Page', 'css' => 'my_jobs'];
-// require('./header.php');
 ?>
 
 <html lang="en">

@@ -2,9 +2,6 @@
 include("../connect.php");
 include("./session.php");
 
-// $header_data = ['id' => 4, 'title' => 'Profile'];
-// require('./header.php');
-
 
 // Update form data if the form is submitted
 if (isset($_POST['submit'])) {
