@@ -64,7 +64,7 @@ Follow these steps to set up and run the Job Portal Project (PHP) locally:
 ![Registration Page](demo/RegistrationPage.png)
 *Registration Page: Registration Page where user can register*
 
-![Candidate Dashboard Page](demo/RegistrationPage.png)
+![Candidate Dashboard Page](demo/candidate/Dashboard.png)
 *Candidate Dashboard Page: Candidate Dashboard Page*
 
 ## Contributing
