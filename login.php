@@ -211,7 +211,7 @@ if (isset($_GET['role'])) {
             padding: 5px 10px;
         }
 
-        .login-section .back-btn span {
+        .login-section .back-btn span a{
             background-color: #dedede;
             color: #000;
             padding: 5px 10px;
@@ -266,7 +266,7 @@ if (isset($_GET['role'])) {
                 </div>
 
                 <div class="back-btn">
-                    <span>Back</span>
+                    <span><a href="./index.php">Back</a></span>
                 </div>
             </div>
         </section>
@@ -295,14 +295,6 @@ if (isset($_GET['role'])) {
             return true;
         }
 
-
-        let backBtn = document.querySelector(".back-btn");
-
-        backBtn.addEventListener("click", goBack);
-
-        function goBack() {
-            window.history.back();
-        }
     </script>
 </body>
 

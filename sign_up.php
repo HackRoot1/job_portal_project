@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Page</title>
     <!-- ================= header and footer stylesheet ================= -->
-    <link rel="stylesheet" href="./css/header.css">
-    <!-- ================== main stylesheet ================= -->
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
     <!-- ==================== Icons link ==================== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 </head>
@@ -39,4 +37,21 @@
         </section>
     </main>
 
-<?php require("./footer.php"); ?>
+
+    <!-- ======================== Footer section ======================== -->
+    <footer>
+        <div>
+            <div><a href="#">Our Team</a></div>
+            <div><a href="#">How It Works</a></div>
+            <div><a href="#">FAQ</a></div>
+            <div><a href="#">Contact Us</a></div>
+        </div>
+        <div>
+            <div><i class="uil uil-facebook-f"></i></div>
+            <div><i class="uil uil-twitter-alt"></i></div>
+            <div><i class="uil uil-linkedin-alt"></i></div>
+        </div>
+    </footer>
+    <!-- ======================== End Footer ======================== -->
+</body>
+</html>

@@ -133,6 +133,14 @@ $_SESSION['csrf_token'] = $token;
         .sidebar .menu .tab-pills:hover a {
             color: #000;
         }
+        .sidebar .menu .tab-pills.active {
+            color: #000;
+            background-color: aliceblue;
+            cursor: pointer;
+        }
+        .sidebar .menu .tab-pills.active a {
+            color: #000;
+        }
 
         .sidebar .settings {
             display: flex;
@@ -385,7 +393,7 @@ $_SESSION['csrf_token'] = $token;
             <div class="title">Something</div>
             <div class="tabs">
                 <div class="tab-pills"><a href="./dashboard.php">Dashboard</a></div>
-                <div class="tab-pills"><a href="./search_jobs.php">Search Jobs</a></div>
+                <div class="tab-pills active"><a href="./search_jobs.php">Search Jobs</a></div>
                 <div class="tab-pills"><a href="./my_applied_jobs.php">My Applied Jobs</a></div>
             </div>
         </div>
