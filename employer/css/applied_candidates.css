@@ -1,0 +1,119 @@
+/* filters section */
+
+.filters-section {
+    width: calc(100vw - 250px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+    /* background-color: #f0f0f0; */
+}
+
+.filters-section>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.filters-section .tabs .tab-link {
+    padding: 5px 20px;
+    font-size: 18px;
+    color: #cecece;
+    cursor: pointer;
+}
+
+.filters-section .tabs .tab-link.active {
+    color: #000;
+    border-bottom: 3px solid #5d28d7;
+}
+
+.filters-section .sorts .sort {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+/* end */
+
+
+
+/* table design */
+
+.result-table-data {
+    padding: 20px;
+    height: 70vh;
+    min-height: 50vh;
+    overflow-y: auto;
+}
+
+.result-table-data table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result-table-data table thead tr {
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: #5d28d7;
+    color: #fff;
+}
+
+.result-table-data table thead tr th {
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: start;
+}
+
+.result-table-data table tbody tr {
+    height: 40px;
+    border: none;
+    outline: none;
+}
+
+.result-table-data table tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.result-table-data table tbody tr td {
+    padding: 0 10px;
+    font-size: 18px;
+    text-align: start;
+}
+
+
+.result-table-data table tbody tr td a {
+    color: #000;
+}
+
+.result-table-data table tbody tr td .btns {
+    background-color: var(--c);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* end */
+
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+.pagination>div {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination .display-pages>div {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}

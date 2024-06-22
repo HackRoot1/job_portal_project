@@ -112,6 +112,7 @@ $result2 = $stmt2->get_result();
             background-color: aliceblue;
             cursor: pointer;
         }
+
         .sidebar .menu .tab-pills.active a {
             color: #000;
         }
@@ -309,8 +310,19 @@ $result2 = $stmt2->get_result();
             text-align: start;
         }
 
-        .result-table-data table tbody tr td a {
-            color: #000;
+        .result-table-data table tbody tr td a, .result-table-data table tbody tr td a.disabled {
+            padding: 5px 10px;
+            background-color: #5d28d7;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+            color: #fff;
+        }
+        .result-table-data table tbody tr td a.disabled {
+            background-color: #cecece;
+            cursor: not-allowed;
         }
 
         .result-table-data table tbody tr td .btns {
@@ -374,16 +386,16 @@ $result2 = $stmt2->get_result();
                 </div>
                 <div class="profile">
                     <span>Profile</span>
-                    <img src="../assets/images/p3.jpg" alt="" />
+                    <img src="../assets/images/<?php echo $users_data['profile_pic'] ?? "" ?>" alt="" />
                 </div>
             </div>
         </nav>
 
         <section class="filters-section">
             <div class="tabs">
-                <div class="tab-link">Active</div>
-                <div class="tab-link active">Pending</div>
-                <div class="tab-link">Completed</div>
+                <div class="tab-link active">All</div>
+                <div class="tab-link">Pending</div>
+                <div class="tab-link">Cancelled</div>
             </div>
             <div class="sorts">
                 <div class="sort">31-01-2000</div>
@@ -404,6 +416,7 @@ $result2 = $stmt2->get_result();
                         <th>Job Location</th>
                         <th>Min. Experience Required</th>
                         <th>Applied On</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -438,7 +451,8 @@ $result2 = $stmt2->get_result();
                                 <td><?php echo $data2['job_location'] ?? "Job Deleted."; ?></td>
                                 <td><?php echo $data2['min_job_exp'] ?? "Job Deleted." ?></td>
                                 <td><?php echo floor($differenceTime / 86400) . " days ago"; ?></td>
-                                <td><?php echo ($data['status'] == 1) ? "Cancelled" : "<a href='cancel_job.php?job_id={$data['job_id']}'>Cancel Application</a>" ?></td>
+                                <td><?php echo ($data['status'] == 1) ? "Cancelled" : "Pending" ?></td>
+                                <td><?php echo ($data['status'] == 1) ? "<a href'#' class='disabled'>Cancelled</a>" : "<a href='cancel_job.php?job_id={$data['job_id']}'>Cancel</a>" ?></td>
 
                             </tr>
 

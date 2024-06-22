@@ -1,0 +1,23 @@
+---- Candidate ----
+
+------ Search jobs Page -------
+1. pagination for search page
+
+
+------ my applied jobs Page -------
+2. pagination for my applied jobs 
+3. filter for all pending and cancelled for my applied jobs
+4. sorting filter on my applied jobs 
+
+
+------ my Profile Page -------
+5. Profile information 
+
+
+
+
+---- Employer ----
+
+----------- my jobs ---------
+6. my jobs page filter for dates 
+7. my jobs page pagination 

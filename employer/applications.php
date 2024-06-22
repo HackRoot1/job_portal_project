@@ -2,9 +2,8 @@
 include("../connect.php");
 include("./session.php");
 
-$header_data = ['css' => 'my_jobs', 'active' => 3];
+$header_data = ['css' => 'applications', 'active' => 4];
 include("./header.php");
-
 ?>
 
         <section class="filters-section">
@@ -33,7 +32,7 @@ include("./header.php");
 
             function loadData() {
                 $.ajax({
-                    url: "pagination_my_jobs.php",
+                    url: "applications_ajax.php",
                     method: "POST",
                     data: {
                         page_no: 0

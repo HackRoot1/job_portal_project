@@ -27,4 +27,3 @@
         // Display an error message if the query fails
         die("Failed to delete the job posting.");
     }
-?>

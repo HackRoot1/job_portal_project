@@ -240,7 +240,7 @@ include("./session.php");
                 </div>
                 <div class="profile">
                     <span>Profile</span>
-                    <img src="../assets/images/p3.jpg" alt="" />
+                    <img src="../assets/images/<?php echo $users_data['profile_pic'] ?? "" ?>" alt="" />
                 </div>
             </div>
         </nav>

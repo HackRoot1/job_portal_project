@@ -1,0 +1,194 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar {
+    background-color: #5d28d7;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.sidebar .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar .menu .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 25px;
+}
+
+.sidebar .menu .tabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.sidebar .menu .tab-pills {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 30px;
+    height: 40px;
+    width: 80%;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.sidebar .menu .tab-pills:hover {
+    color: #000;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+.sidebar .menu .tab-pills:hover a {
+    color: #000;
+}
+
+.sidebar .menu .tab-pills.active {
+    color: #000;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+.sidebar .menu .tab-pills.active a {
+    color: #000;
+}
+
+.sidebar .settings {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sidebar .settings>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 80%;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.sidebar .settings>div input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: serif;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sidebar .settings>div:hover {
+    color: #000;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+.sidebar .settings div.active {
+    color: #000;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+.sidebar .settings div.active a {
+    color: #000;
+}
+
+.sidebar .settings>div:hover a{
+    color: #000;
+}
+.sidebar .settings>div:hover input{
+    color: #000;
+}
+
+/* navbar design */
+nav {
+    width: calc(100vw - 250px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+    background-color: #f0f0f0;
+    /* position: fixed; */
+}
+
+nav .title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav .links {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+nav .links .search input {
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 250px;
+    padding: 0 20px;
+    font-size: 16px;
+}
+
+nav .links .profile {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #5d28d7;
+    padding: 0px 20px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+nav .links .profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+/* end */
+

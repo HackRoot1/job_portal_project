@@ -1,0 +1,84 @@
+/* title */
+
+.section-title {
+    padding: 20px 30px;
+}
+
+.section-title span {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* end */
+
+
+
+.job-posting-section {
+    display: flex;
+    padding: 0px 30px;
+    width: 100%;
+}
+
+.job-form {
+    width: 100%;
+    height: 80%;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.job-form .wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.job-form form .flex-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.job-form form .flex-col {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.job-form form .flex-col input,
+select,
+textarea {
+    height: 35px;
+    outline: none;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 50px;
+}
+
+.job-form form .flex-col input[type='submit'] {
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    border-radius: 5px;
+    background-color: #5d28d7;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* end */
