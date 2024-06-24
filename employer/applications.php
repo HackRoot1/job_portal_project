@@ -80,6 +80,7 @@ $result_filter_jobs = mysqli_query($conn, $filter_jobs);
                     method: "POST",
                     data: {
                         sortFilter : sortFilter,
+                        page_no : 0,
                     },
                     success: function(data) {
                         $(".dynamic-result").html(data);

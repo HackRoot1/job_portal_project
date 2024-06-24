@@ -5,18 +5,17 @@ include("./session.php");
 
 if (isset($_POST['page_no'])) {
     $page_no = $_POST['page_no'];
-
     $page_start = ($page_no * 10);
 
     // Fetch jobs posted by the current employer
-    $sql = "SELECT * FROM posted_jobs WHERE employer_id = '{$users_data['id']}' ORDER BY posted_at DESC, updated_at DESC LIMIT {$page_start}, 10";
+    $sql = "SELECT * FROM posted_jobs WHERE employer_id = '{$users_data['id']}' ORDER BY  updated_at DESC, posted_at DESC LIMIT {$page_start}, 10";
     $result = mysqli_query($conn, $sql) or die("Query Failed: " . mysqli_error($conn));
 }
 
 // Fetch jobs posted by the current employer
-$sql_num_row = "SELECT * FROM posted_jobs WHERE employer_id = '{$users_data['id']}' ORDER BY posted_at DESC, updated_at DESC";
+// total rows
+$sql_num_row = "SELECT * FROM posted_jobs WHERE employer_id = '{$users_data['id']}' ORDER BY  updated_at DESC, posted_at DESC";
 $result_rows = mysqli_query($conn, $sql_num_row) or die("Query Failed: " . mysqli_error($conn));
-
 $num_rows = mysqli_num_rows($result_rows);
 
 ?>
@@ -57,7 +56,7 @@ $num_rows = mysqli_num_rows($result_rows);
                                 <?php echo $count['count_job']; ?>
                             </a>
                         </td>
-                        <td><?= date( "d-M-Y h-i-s", ($data['posted_at'] >= $data['updated_at'] ? $data['posted_at'] : $data['updated_at'])) ?></td>
+                        <td><?= date( "d-M-Y h-i-s A", ($data['posted_at'] >= $data['updated_at'] ? $data['posted_at'] : $data['updated_at'])) ?></td>
                         <td>
                             <a class="btns" style="--c: green" href="post_new_job.php?job_id=<?php echo $data['id']; ?>">Edit</a>
                             <a class="btns" style="--c: red" href="delete_job.php?job_id=<?php echo $data['id']; ?>">Delete</a>
@@ -67,6 +66,12 @@ $num_rows = mysqli_num_rows($result_rows);
             <?php
             $row_no++;
                 }
+            } else {
+            ?>
+                <tr>
+                    <td style="text-align: center;" colspan="5">No Applications Found</td>
+                </tr>
+            <?php
             }
             ?>
         </tbody>
@@ -75,7 +80,7 @@ $num_rows = mysqli_num_rows($result_rows);
 
 
 <section class="pagination">
-    <div class="display-details">Showing <?= $page_start . "- ". ( $num_rows > $page_start ? ($num_rows) : $page_start + 10) ?> of <?= $num_rows ?></div>
+    <div class="display-details">Showing <?= ($page_start + 1) . "- ". ( $num_rows <= $page_start + 10 ? ($num_rows) : $page_start + 10) ?> of <?= $num_rows ?></div>
     <div class="display-pages">
         <?php
         if ($num_rows > 10) {

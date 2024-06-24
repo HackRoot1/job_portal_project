@@ -5,47 +5,6 @@ include("./session.php");
 // Default SQL query to fetch all posted jobs
 $sql = "SELECT * FROM posted_jobs";
 
-
-// Check if search form is submitted
-if (isset($_POST['search'])) {
-
-    // Validate CSRF token
-    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        die("CSRF token validation failed.");
-    }
-
-    // Initialize variables for job type and location
-    $job_type = $_POST['job_type'] ?? "";
-    $job_location = $_POST['job_location'] ?? "";
-
-    // Prepare an array to store conditions
-    $conditions = [];
-
-    // Check if job type is provided
-    if (!empty($job_type)) {
-        // Sanitize job type input
-        $job_type = mysqli_real_escape_string($conn, $job_type);
-        // Add job type condition to the array
-        $conditions[] = "job_type = '$job_type'";
-    }
-
-    // Check if job location is provided
-    if (!empty($job_location)) {
-        // Sanitize job location input
-        $job_location = mysqli_real_escape_string($conn, $job_location);
-        // Add job location condition to the array
-        $conditions[] = "job_location = '$job_location'";
-    }
-
-    // If there are conditions, construct the WHERE clause
-    if (!empty($conditions)) {
-        $sql .= " WHERE " . implode(" AND ", $conditions);
-    }
-}
-
-// Execute the SQL query
-$result = mysqli_query($conn, $sql) or die("Query Failed");
-
 // CSRF Protection
 $token = bin2hex(random_bytes(32));
 $_SESSION['csrf_token'] = $token;
@@ -59,10 +18,9 @@ include("./header.php");
 
         <section class="filters-section">
 
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" id = "search-job-form">
 
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-
-                <input type="hidden" name="csrf_token" value="<?= $token ?>">
+                <input type="hidden" name="csrf_token" id = "csrf_token" value="<?= $token ?>">
 
                 <div>
                     <label for="job-type">Job Type:</label>
@@ -91,61 +49,74 @@ include("./header.php");
         </section>
 
 
+        <!-- load dynamic data here  -->
+        <div class="dynamic-result"></div>
 
-        <section class="result-table-data">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Job Title</th>
-                        <th>Company Name</th>
-                        <th>Job Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php
-                    if (isset($result) && mysqli_num_rows($result) > 0) {
-                        while ($data = mysqli_fetch_assoc($result)) {
-
-                            // get company name using employer id 
-                            $c = "SELECT company_name FROM users_data WHERE id = '{$data['employer_id']}'";
-                            $r = mysqli_query($conn, $c);
-                            $f = mysqli_fetch_assoc($r);
-                    ?>
-                            <tr>
-                                <td><?php echo $data['id']; ?></td>
-                                <td><a href="./searched_job.php?job_id=<?php echo $data['id']; ?>"><?php echo $data['job_title']; ?></a></td>
-                                <td><?php echo $f['company_name']; ?></td>
-                                <td><?php echo $data['job_location']; ?></td>
-                            </tr>
-
-                        <?php
-                        }
-                    } else {
-                        ?>
-                        <tr>
-                            <td colspan="4" style="text-align: center;">No records found.</td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </section>
-
-
-        <section class="pagination">
-            <div class="display-details">Showing 5-10 of 23</div>
-            <div class="display-pages">
-                <div class="pre">&lt;</div>
-                <div class="page">1</div>
-                <div class="page">2</div>
-                <div class="page">3</div>
-                <div class="next">&gt;</div>
-            </div>
-        </section>
     </main>
+
+
+    <script>
+        $(document).ready(function() {
+
+            function loadData() {
+                $.ajax({
+                    url: "search_jobs_ajax.php",
+                    method: "POST",
+                    data: {
+                        page_no: 0
+                    },
+                    success: function(data) {
+                        $(".dynamic-result").html(data);
+                    }
+                });
+            }
+
+            loadData();
+
+            $(document).on("click", ".page", function() {
+                let pageId = $(this).data("pageid");
+                // alert(pageId);
+                if (pageId >= 0) {
+
+                    $.ajax({
+                        url: "search_jobs_ajax.php",
+                        method: "POST",
+                        data: {
+                            page_no: pageId
+                        },
+                        success: function(data) {
+                            $(".dynamic-result").html(data);
+                        }
+                    });
+                }
+
+            });
+            
+            $(document).on("submit", "#search-job-form", function(e) {
+                e.preventDefault();
+                // let formData = $(this).serialize();
+                let csrf_token = $("#csrf_token").val();
+                let job_type = $("#job-type").val() || "";
+                let job_location = $("#job_location").val() || "";
+                // alert(job_location || "");
+
+                $.ajax({
+                    url: "search_jobs_ajax.php",
+                    method: "POST",
+                    data: {
+                        page_no : 0,
+                        csrf_token : csrf_token,
+                        job_type : job_type,
+                        job_location : job_location,
+                    },
+                    success: function(data) {
+                        $(".dynamic-result").html(data);
+                    }
+                });
+
+            });
+        });
+    </script>
 </body>
 
 </html>

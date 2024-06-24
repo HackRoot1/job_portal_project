@@ -27,7 +27,9 @@
         </div>
 
         <div class="settings">
-            <div class="<?= $header_data['active'] == 5 ? "active" : "" ?>"><a href="./my_profile.php">Settings</a></div>
+            <div class="<?= $header_data['active'] == 5 ? "active" : "" ?>">
+                <a href="./my_profile.php">Settings</a>
+            </div>
             <div>
                 <form method="post">
                     <input type="submit" name="logout" value="Logout">
@@ -45,7 +47,7 @@
                     <input type="search" name="" id="" />
                 </div>
                 <div class="profile">
-                    <span>Profile</span>
+                    <span><?= $users_data['username'] ?></span>
                     <img src="../assets/images/<?= $users_data['profile_pic'] ?? "p3.jpg" ?>" alt="" />
                 </div>
             </div>

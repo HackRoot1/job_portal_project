@@ -27,8 +27,8 @@ include("./header.php");
 
         <section class="filters-section">
             <div class="tabs">
-                <div class="tab-link">Active</div>
-                <div class="tab-link active">Pending</div>
+                <div class="tab-link active">All</div>
+                <div class="tab-link">Pending</div>
                 <div class="tab-link">Completed</div>
             </div>
             <div class="sorts">
