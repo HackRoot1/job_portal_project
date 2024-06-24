@@ -11,41 +11,52 @@
     /* background-color: #f0f0f0; */
 }
 
-.filters-section > div {
+.filters-section > form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.filters-section div {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.filters-section .tabs .tab-link {
-    padding: 5px 20px;
+.filters-section div label{
+    width: 200px;
+}
+
+.filters-section div input[type='submit']{
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-family: serif;
     font-size: 18px;
-    color: #cecece;
+    color: #fff;
+    background-color: #5d28d7;
     cursor: pointer;
 }
 
-.filters-section .tabs .tab-link.active {
-    color: #000;
-    border-bottom: 3px solid #5d28d7;
-}
-
-.filters-section .sorts .sort {
-    padding: 3px;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-}
-
-.filters-section .sorts .sort select {
-    background-color: transparent;
-    height: 100%;
+.filters-section div select{
+    height: 35px;
     width: 100%;
-    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
     outline: none;
-    padding: 5px 10px;
+
 }
+
 
 /* end */
+
+
 
 /* table design */
 
@@ -106,18 +117,19 @@
 
 /* end */
 
+
 .pagination {
     display: flex;
     justify-content: space-between;
     padding: 0 25px;
 }
 
-.pagination > div {
+.pagination>div {
     display: flex;
     gap: 10px;
 }
 
-.pagination .display-pages > div {
+.pagination .display-pages>div {
     cursor: pointer;
     width: 15px;
     height: 15px;

@@ -11,7 +11,7 @@
     /* background-color: #f0f0f0; */
 }
 
-.filters-section > div {
+.filters-section>div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,21 +31,14 @@
 }
 
 .filters-section .sorts .sort {
-    padding: 3px;
+    padding: 5px 10px;
     border-radius: 5px;
     background-color: #f0f0f0;
 }
 
-.filters-section .sorts .sort select {
-    background-color: transparent;
-    height: 100%;
-    width: 100%;
-    border: none;
-    outline: none;
-    padding: 5px 10px;
-}
-
 /* end */
+
+
 
 /* table design */
 
@@ -92,8 +85,19 @@
     text-align: start;
 }
 
-.result-table-data table tbody tr td a {
-    color: #000;
+.result-table-data table tbody tr td a, .result-table-data table tbody tr td a.disabled {
+    padding: 5px 10px;
+    background-color: #5d28d7;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    color: #fff;
+}
+.result-table-data table tbody tr td a.disabled {
+    background-color: #cecece;
+    cursor: not-allowed;
 }
 
 .result-table-data table tbody tr td .btns {
@@ -106,18 +110,19 @@
 
 /* end */
 
+
 .pagination {
     display: flex;
     justify-content: space-between;
     padding: 0 25px;
 }
 
-.pagination > div {
+.pagination>div {
     display: flex;
     gap: 10px;
 }
 
-.pagination .display-pages > div {
+.pagination .display-pages>div {
     cursor: pointer;
     width: 15px;
     height: 15px;

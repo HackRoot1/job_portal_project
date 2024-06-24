@@ -5,7 +5,6 @@ include("./session.php");
 
 if (isset($_POST['page_no'])) {
     $page_no = $_POST['page_no'];
-
     $page_start = ($page_no * 10);
 
     // Fetch jobs posted by the current employer
@@ -14,12 +13,19 @@ if (isset($_POST['page_no'])) {
     $result = mysqli_query($conn, $sql) or die("Query Failed");
 }
 
+if(isset($_POST['sortFilter'])) {
+    $filter = $_POST['sortFilter'];
+    $page_no = $_POST['page_no'];
+
+    $page_start = ($page_no * 10);
+    $sql = "SELECT * FROM applied_jobs WHERE emp_id = '{$users_data['id']}' AND job_id = '{$filter}' LIMIT {$page_start}, 10";
+    $result = mysqli_query($conn, $sql) or die("Query Failed");
+}
+
+
 // Fetch jobs posted by the current employer
 $sql_rows = "SELECT * FROM applied_jobs WHERE emp_id = '{$users_data['id']}' LIMIT {$page_start}, 10";
 $result_rows = mysqli_query($conn, $sql_rows) or die("Query Failed");
-
-
-
 $num_rows = mysqli_num_rows($result_rows);
 
 ?>
@@ -87,7 +93,6 @@ $num_rows = mysqli_num_rows($result_rows);
 <section class="pagination">
     <div class="display-details">Showing <?= $page_start . "- " . ($num_rows > $page_start ? ($num_rows) : $page_start + 10) ?> of <?= $num_rows ?></div>
     <div class="display-pages">
-        <div class="pre page" data-pageid="<?= ($page_no - 1) ?>">Pre</div>
         <?php
         if ($num_rows > 10) {
             $div = floor($num_rows / 10);
@@ -103,6 +108,5 @@ $num_rows = mysqli_num_rows($result_rows);
         <?php } else { ?>
             <div class="page" data-pageid="0">1</div>
         <?php } ?>
-        <div class="next page" data-pageid="<?= ($page_no + 1) ?>">Next</div>
     </div>
 </section>

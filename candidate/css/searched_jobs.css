@@ -1,0 +1,60 @@
+/* filters section */
+
+.filters-section {
+    width: calc(100vw - 250px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+    /* background-color: #f0f0f0; */
+}
+
+.filters-section>.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* end */
+
+.display-job-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.display-job-data .table {
+    padding: 50px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    background-color: #f0f0f0;
+}
+
+.display-job-data .table .row {
+    display: flex;
+    height: 30px;
+    font-size: 20px;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+}
+
+.display-job-data .table .row .apply-btn a{
+    width: 100px;
+    height: 30px;
+    background-color: #5d28d7;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

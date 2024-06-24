@@ -2,6 +2,12 @@
 include("../connect.php");
 include("./session.php");
 
+
+$now_time = date(time());
+// echo date(time());
+// echo "<br>";
+// echo date( "d-M-Y  h-i-s",$now_time);
+// exit();
 if (isset($_GET['job_id'])) {
     $job_id = $_GET['job_id'];
     $fetch_query = "SELECT * FROM posted_jobs WHERE id = ?";
@@ -34,11 +40,11 @@ if (isset($_POST['submit']) || isset($_POST['update'])) {
     if (isset($_POST['submit'])) {
         $sql = "INSERT INTO 
                         posted_jobs
-                        (employer_id, job_title, description, budget_ctc, job_type, job_location, min_job_exp, max_job_exp) 
+                        (employer_id, job_title, description, budget_ctc, job_type, job_location, min_job_exp, max_job_exp, posted_at, updated_at) 
                     VALUES 
-                        (?, ?, ?, ?, ?, ?, ?, ?)";
+                        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("issssssi", $employer_id, $job_title, $job_desc, $job_budget, $job_type, $job_location, $min_job_exp, $max_job_exp);
+        $stmt->bind_param("issssssiss", $employer_id, $job_title, $job_desc, $job_budget, $job_type, $job_location, $min_job_exp, $max_job_exp, $now_time, $now_time);
     } elseif (isset($_POST['update'])) {
         $sql = "UPDATE 
                         posted_jobs 
@@ -50,13 +56,18 @@ if (isset($_POST['submit']) || isset($_POST['update'])) {
                         job_type = ?, 
                         job_location = ?, 
                         min_job_exp = ?, 
-                        max_job_exp = ? 
+                        max_job_exp = ?,
+                        updated_at = ?
                     WHERE 
                         id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("issssssii", $employer_id, $job_title, $job_desc, $job_budget, $job_type, $job_location, $min_job_exp, $max_job_exp, $job_post_id);
+        $stmt->bind_param("issssssisi", $employer_id, $job_title, $job_desc, $job_budget, $job_type, $job_location, $min_job_exp, $max_job_exp, $now_time, $job_post_id);
     }
-    $stmt->execute();
+    if($stmt->execute()) {
+        $stmt->close();
+        header("Location: ./my_jobs.php");
+        exit();
+    }
     $stmt->close();
 }
 
