@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include("../connect.php");
 include("./session.php");
@@ -10,14 +10,14 @@ if (isset($_POST['page_no'])) {
     $page_no = $_POST['page_no'];
     $page_start = ($page_no * 10);
     // // Retrieve user data from the database
-    
+
     $sql2 = "SELECT * FROM applied_jobs WHERE candidate_id = '{$users_data['id']}'";
 
     // checking if filter is applied or not 
-    if(isset($_POST['status'])) {
+    if (isset($_POST['status'])) {
         $sql2 .= " AND status = '{$_POST['status']}'";
     }
-    
+
     $sql2 .= " ORDER BY applied_time DESC LIMIT {$page_start}, 10";
 }
 
@@ -72,13 +72,24 @@ $num_rows = mysqli_num_rows($result2);
                         <td><?php echo $data2['job_location'] ?? "Job Deleted."; ?></td>
                         <td><?php echo $data2['min_job_exp'] ?? "Job Deleted." ?></td>
                         <td><?php echo floor($differenceTime / 86400) . " days ago"; ?></td>
-                        <td><?php echo ($data['status'] == 1) ? "Cancelled" : "Pending" ?></td>
-                        <td><?php echo ($data['status'] == 1) ? "<a href'#' class='disabled'>Cancelled</a>" : "<a href='cancel_job.php?job_id={$data['job_id']}'>Cancel</a>" ?></td>
-
+                        <td>
+                            <?php 
+                                if($data['status'] == 0):
+                                    echo "Pending";
+                                elseif($data['status'] == 1):
+                                    echo "Cancelled";
+                                else:
+                                    echo "Viewed By Employer" ;
+                                endif;
+                            ?>
+                        </td>
+                        <td><?php echo ($data['status'] == 1)
+                                ? "<a href'#' class='disabled'>Cancelled</a>"
+                                : "<a href='cancel_job.php?job_id={$data['job_id']}'>Cancel</a>" ?></td>
                     </tr>
 
             <?php
-                $row_no++;
+                    $row_no++;
                 }
             } else {
                 echo "<tr><td colspan='6'>No records found</td></tr>";

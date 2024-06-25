@@ -9,15 +9,21 @@ if (isset($_POST['page_no'])) {
 
     // Fetch jobs posted by the current employer
     // Fetch applied employees for the specified job_id
-    $sql = "SELECT * FROM applied_jobs WHERE emp_id = '{$users_data['id']}' LIMIT {$page_start}, 10";
+    $sql = "SELECT * FROM applied_jobs WHERE emp_id = '{$users_data['id']}'";
     $result = mysqli_query($conn, $sql) or die("Query Failed");
-    
-    if(isset($_POST['sortFilter'])) {
+
+    if (isset($_POST['sortFilter'])) {
         $filter = $_POST['sortFilter'];
-    
-        $sql = "SELECT * FROM applied_jobs WHERE emp_id = '{$users_data['id']}' AND job_id = '{$filter}' LIMIT {$page_start}, 10";
-        $result = mysqli_query($conn, $sql) or die("Query Failed");
+
+        $sql .= " AND job_id = '{$filter}'";
     }
+
+    if(isset($_POST['status'])) {
+        $sql .= " AND status = '{$_POST['status']}'";
+    }
+    
+    $sql .= " LIMIT {$page_start}, 10";
+    $result = mysqli_query($conn, $sql) or die("Query Failed");
 }
 
 
@@ -71,12 +77,16 @@ $num_rows = mysqli_num_rows($result_rows);
                         <td><?php echo $job_info['job_title'] ?></td>
                         <td><?php echo $candidate_info['current_ctc']; ?></td>
                         <td><?php echo $candidate_info['current_location']; ?></td>
-                        <td>status</td>
-                        <td><a class="btns" style="--c: green" href="<?php echo $candidate_info['resume'] != "" ? "../assets/files/" . $candidate_info['resume'] : "#" ?>">View Resume</a></td>
+                        <td>
+                            <?= $data['status'] == "2" ? "Viewed" : "Pending" ?>
+                        </td>
+                        <td>
+                            <a class="btns" style="--c: green" href="<?php echo $candidate_info['resume'] != "" ? "../assets/files/" . $candidate_info['resume'] : "#" ?>">View Resume</a>
+                        </td>
                     </tr>
 
                 <?php
-                $row_no++;
+                    $row_no++;
                 }
             } else {
                 ?>
@@ -93,7 +103,7 @@ $num_rows = mysqli_num_rows($result_rows);
 
 
 <section class="pagination">
-    <div class="display-details">Showing <?= ($page_start + 1) . "- ". ( $num_rows <= $page_start + 10 ? ($num_rows) : $page_start + 10) ?> of <?= $num_rows ?></div>
+    <div class="display-details">Showing <?= ($page_start + 1) . "- " . ($num_rows <= $page_start + 10 ? ($num_rows) : $page_start + 10) ?> of <?= $num_rows ?></div>
     <div class="display-pages">
         <?php
         if ($num_rows > 10) {

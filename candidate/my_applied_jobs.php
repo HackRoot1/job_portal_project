@@ -36,6 +36,7 @@ include("./header.php");
         <div class="tab-link active" data-filterstatus="">All</div>
         <div class="tab-link" data-filterstatus="0">Pending</div>
         <div class="tab-link" data-filterstatus="1">Cancelled</div>
+        <div class="tab-link" data-filterstatus="2">Viewed By Employer</div>
     </div>
     <div class="sorts">
         <div class="sort">31-01-2000</div>
