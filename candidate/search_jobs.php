@@ -3,7 +3,8 @@ include("../connect.php");
 include("./session.php");
 
 // Default SQL query to fetch all posted jobs
-$sql = "SELECT * FROM posted_jobs";
+$list_sql = "SELECT DISTINCT `job_location` as 'location' FROM `posted_jobs`";
+$list_result = mysqli_query($conn, $list_sql);
 
 // CSRF Protection
 $token = bin2hex(random_bytes(32));
@@ -36,9 +37,15 @@ include("./header.php");
                     <label for="job_location">Job Location:</label>
                     <select name="job_location" id="job_location">
                         <option value="">--- Select ---</option>
-                        <option value="mumbai">Mumbai</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="bangalore">Bangalore</option>
+                        <?php 
+                        if(mysqli_num_rows($list_result) > 0): 
+                            while($data = mysqli_fetch_assoc($list_result)):
+                        ?>
+                            <option value="<?= $data['location'] ?>"><?= ucfirst($data['location']) ?></option>
+                        <?php 
+                            endwhile;
+                        endif; 
+                        ?>
                     </select>
                 </div>
 

@@ -25,7 +25,7 @@
 .profile-section .profile-info {
     background-color: #f0f0f0;
     border: 1px solid #000;
-    height: 400px;
+    max-height: 400px;
     width: 300px;
 }
 
@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid;
+    /* border: 1px solid; */
 }
 
 .profile-section .profile-info .img {
@@ -86,7 +86,8 @@
     padding: 0 20px;
     font-size: 18px;
 }
-.profile-update-form .tabs a{
+
+.profile-update-form .tabs a {
     color: #000;
 }
 
@@ -127,12 +128,14 @@
     gap: 10px;
     width: 50%;
 }
-.profile-update-form .form form .form-row .form-col.gender-col{
+
+.profile-update-form .form form .form-row .form-col.gender-col {
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
 }
+
 .profile-update-form .form form .form-row .form-col .gender-cell {
     display: flex;
     flex-direction: row;

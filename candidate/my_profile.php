@@ -57,14 +57,13 @@ include("./header.php");
             <div>
                 <div class="profile-info">
                     <div class="img">
-                        <img src="../assets/images/p3.jpg" alt="">
-                        <div class="name">Saurabh Damale</div>
-                        <div class="c_name">Company Name</div>
+                        <img src="../assets/images/<?php echo $users_data['profile_pic'] ?? "p3.jpg" ?>" alt="">
+                        <div class="name"><?= $users_data['firstName'] . " " . $users_data['lastName'] ?></div>
+                        <div class="c_name"><?= $users_data['company_name'] ?></div>
                     </div>
 
-                    <div class="info">Saurabh Damale</div>
-                    <div class="info">Saurabh Damale</div>
-                    <div class="info">Saurabh Damale</div>
+                    <div class="info"><?= $users_data['email'] ?></div>
+                    <div class="info"><?= $users_data['gender'] ?></div>
                 </div>
 
                 <div class="profile-update-form">
