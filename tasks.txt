@@ -20,4 +20,3 @@
 
 ----------- my jobs ---------
 6. my jobs page filter for dates 
-7. my jobs page pagination 

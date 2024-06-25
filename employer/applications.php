@@ -19,7 +19,7 @@ $result_filter_jobs = mysqli_query($conn, $filter_jobs);
             <div class="sorts">
                 <div class="sort">
                     <select name="sort-filter" id="sort-jobs">
-                        <option value="" disabled selected>--- Select Job Role ---</option>
+                        <option value="" selected>--- Select Job Role ---</option>
                         <?php while($data = mysqli_fetch_assoc($result_filter_jobs)): ?>
                             <option value="<?= $data['id'] ?>"><?= $data['job_title'] ?></option>
                         <?php endwhile; ?>
@@ -73,19 +73,25 @@ $result_filter_jobs = mysqli_query($conn, $filter_jobs);
 
             });
             
+
             $(document).on("change", "#sort-jobs", function() {
                 let sortFilter = $(this).val();
-                $.ajax({
-                    url: "applications_ajax.php",
-                    method: "POST",
-                    data: {
-                        sortFilter : sortFilter,
-                        page_no : 0,
-                    },
-                    success: function(data) {
-                        $(".dynamic-result").html(data);
-                    }
-                });
+                if(sortFilter == "") {
+                    loadData();
+                }else {
+
+                    $.ajax({
+                        url: "applications_ajax.php",
+                        method: "POST",
+                        data: {
+                            sortFilter : sortFilter,
+                            page_no : 0,
+                        },
+                        success: function(data) {
+                            $(".dynamic-result").html(data);
+                        }
+                    });
+                }
 
             });
         });

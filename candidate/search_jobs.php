@@ -82,14 +82,23 @@ include("./header.php");
 
             $(document).on("click", ".page", function() {
                 let pageId = $(this).data("pageid");
-                // alert(pageId);
+
+                // checking if filter is applied or not 
+                let csrf_token = $("#csrf_token").val();
+                let job_type = $("#job-type").val() || "";
+                let job_location = $("#job_location").val() || "";
+
+
                 if (pageId >= 0) {
 
                     $.ajax({
                         url: "search_jobs_ajax.php",
                         method: "POST",
                         data: {
-                            page_no: pageId
+                            page_no: pageId,
+                            csrf_token : csrf_token,
+                            job_type : job_type,
+                            job_location : job_location,
                         },
                         success: function(data) {
                             $(".dynamic-result").html(data);
@@ -101,11 +110,9 @@ include("./header.php");
             
             $(document).on("submit", "#search-job-form", function(e) {
                 e.preventDefault();
-                // let formData = $(this).serialize();
                 let csrf_token = $("#csrf_token").val();
                 let job_type = $("#job-type").val() || "";
                 let job_location = $("#job_location").val() || "";
-                // alert(job_location || "");
 
                 $.ajax({
                     url: "search_jobs_ajax.php",

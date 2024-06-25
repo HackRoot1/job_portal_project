@@ -81,7 +81,7 @@ $num_rows = mysqli_num_rows($result_rows);
             } else {
                 ?>
                 <tr>
-                    <td style="text-align: center;" colspan="5">No Applications Found</td>
+                    <td style="text-align: center;" colspan="7">No Applications Found</td>
                 </tr>
             <?php
             }
