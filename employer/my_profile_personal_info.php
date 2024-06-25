@@ -82,7 +82,7 @@ include("./header.php");
 
                     <div class="info"><?= $users_data['email'] ?></div>
                     <div class="info"><?= $users_data['gender'] ?></div>
-                </div>
+                </div> 
 
                 <div class="profile-update-form">
 

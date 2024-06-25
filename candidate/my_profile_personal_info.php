@@ -18,7 +18,14 @@
         $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
 
         // Prepare update query
-        $sql = "UPDATE users_data SET username = ?, firstName = ?, lastName = ?, gender = ?, date_of_birth = ?";
+        $sql = "UPDATE 
+                    users_data 
+                SET 
+                    username = '{$username}', 
+                    firstName = '{$firstName}', 
+                    lastName = '{$lastName}', 
+                    gender = '{$gender}', 
+                    date_of_birth = '{$date_of_birth}'";
 
         // Check if profile image is uploaded
         if(isset($_FILES['profile_img']) && $_FILES['profile_img']['error'] === UPLOAD_ERR_OK) {

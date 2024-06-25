@@ -31,67 +31,102 @@ include("./header.php");
 
 ?>
 
-        <section class="filters-section">
-            <div class="tabs">
-                <div class="tab-link active">All</div>
-                <div class="tab-link">Pending</div>
-                <div class="tab-link">Cancelled</div>
-            </div>
-            <div class="sorts">
-                <div class="sort">31-01-2000</div>
-                <div>To</div>
-                <div class="sort">31-01-2000</div>
-            </div>
-        </section>
+<section class="filters-section">
+    <div class="tabs">
+        <div class="tab-link active" data-filterstatus="">All</div>
+        <div class="tab-link" data-filterstatus="0">Pending</div>
+        <div class="tab-link" data-filterstatus="1">Cancelled</div>
+    </div>
+    <div class="sorts">
+        <div class="sort">31-01-2000</div>
+        <div>To</div>
+        <div class="sort">31-01-2000</div>
+    </div>
+</section>
 
 
-        <!-- load dynamic data here  -->
-        <div class="dynamic-result"></div>
+<!-- load dynamic data here  -->
+<div class="dynamic-result"></div>
 
 
 
-    </main>
+</main>
 
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
 
-            function loadData() {
+        function loadData() {
+            $.ajax({
+                url: "applied_jobs_ajax.php",
+                method: "POST",
+                data: {
+                    page_no: 0
+                },
+                success: function(data) {
+                    $(".dynamic-result").html(data);
+                }
+            });
+        }
+
+        loadData();
+
+        $(document).on("click", ".page", function() {
+            let pageId = $(this).data("pageid");
+            let status = $(".tab-link.active").data("filterstatus");
+            
+            let obj = {
+                page_no : pageId,
+            } 
+            if(status != "" || status == "0") {
+                obj = {
+                    ...obj,
+                    status : status,
+                }
+            }
+
+            if (pageId >= 0) {
+
                 $.ajax({
                     url: "applied_jobs_ajax.php",
                     method: "POST",
-                    data: {
-                        page_no: 0
-                    },
+                    data: obj,
                     success: function(data) {
                         $(".dynamic-result").html(data);
                     }
                 });
             }
 
-            loadData();
-
-            $(document).on("click", ".page", function() {
-                let pageId = $(this).data("pageid");
-                // alert(pageId);
-                if (pageId >= 0) {
-
-                    $.ajax({
-                        url: "applied_jobs_ajax.php",
-                        method: "POST",
-                        data: {
-                            page_no: pageId
-                        },
-                        success: function(data) {
-                            $(".dynamic-result").html(data);
-                        }
-                    });
-                }
-
-            });
-            
-            
         });
-    </script>
+
+
+        $(document).on("click", ".tab-link", function() {
+
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+
+            let status = $(this).data("filterstatus");
+
+            if(status != "" || status == "0"){
+                $.ajax({
+                    url: "applied_jobs_ajax.php",
+                    method: "POST",
+                    data: {
+                        page_no: 0,
+                        status : status,
+                    },
+                    success: function(data) {
+                        $(".dynamic-result").html(data);
+                    }
+                });
+            }else {
+                loadData();
+            }
+
+        });
+
+
+    });
+</script>
 </body>
 
 </html>

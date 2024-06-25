@@ -11,8 +11,14 @@ if (isset($_POST['page_no'])) {
     $page_start = ($page_no * 10);
     // // Retrieve user data from the database
     
+    $sql2 = "SELECT * FROM applied_jobs WHERE candidate_id = '{$users_data['id']}'";
 
-    $sql2 = "SELECT * FROM applied_jobs WHERE candidate_id = '{$users_data['id']}' ORDER BY applied_time DESC LIMIT {$page_start}, 10";
+    // checking if filter is applied or not 
+    if(isset($_POST['status'])) {
+        $sql2 .= " AND status = '{$_POST['status']}'";
+    }
+    
+    $sql2 .= " ORDER BY applied_time DESC LIMIT {$page_start}, 10";
 }
 
 $result2 = mysqli_query($conn, $sql2);
