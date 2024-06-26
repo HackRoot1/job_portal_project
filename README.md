@@ -55,17 +55,34 @@ Follow these steps to set up and run the Job Portal Project (PHP) locally:
 
 ## Demo Screenshots
 
+
 ![Home Page](demo/Home.png)
-*Home Page: Home Page of Job Portal Project For Choosing User Role*
+*Home Page: The landing page of the Job Portal Project, allowing users to choose their role.*
 
 ![Login Page](demo/LoginPage.png)
-*Login Page: Login Page where user can login using credentials*
+*Login Page: The page where users can log in using their credentials.*
 
 ![Registration Page](demo/RegistrationPage.png)
-*Registration Page: Registration Page where user can register*
+*Registration Page: The page where new users can register.*
+
+**Candidate Role**
 
 ![Candidate Dashboard Page](demo/candidate/Dashboard.png)
-*Candidate Dashboard Page: Candidate Dashboard Page*
+*Candidate Dashboard Page: The main dashboard for candidates, displaying their job application status and updates.*
+
+![Candidate Search Jobs Page](demo/candidate/search_jobs.png)
+*Candidate Search Jobs Page: The page where candidates can search for available job listings.*
+
+![Candidate Selected Job Page](demo/candidate/selected_job.png)
+*Candidate Selected Job Page: The page displaying detailed information about a selected job.*
+
+![Candidate Applied Jobs Page](demo/candidate/applied_jobs.png)
+*Candidate Applied Jobs Page: The page where candidates can view the jobs they have applied for.*
+
+![Candidate Profile Settings Page](demo/candidate/profile_settings.png)
+*Candidate Profile Settings Page: The page where candidates can manage and update their profile settings.*
+
+
 
 ## Contributing
 
