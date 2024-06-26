@@ -29,7 +29,7 @@ Follow these steps to set up and run the Job Portal Project (PHP) locally:
 1. **Clone the Repository:**
    - Clone the repository to your local machine using the following command:
      ```
-     git clone https://github.com/your-username/job-portal-php.git
+     git clone https://github.com/HackRoot1/job_portal_project.git
      ```
 
 2. **Import Database Schema:**
