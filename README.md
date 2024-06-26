@@ -67,7 +67,7 @@ Follow these steps to set up and run the Job Portal Project (PHP) locally:
 
 **Candidate Role**
 
-![Candidate Dashboard Page](demo/candidate/Dashboard.png)
+![Candidate Dashboard Page](demo/candidate/dashboard.png)
 *Candidate Dashboard Page: The main dashboard for candidates, displaying their job application status and updates.*
 
 ![Candidate Search Jobs Page](demo/candidate/search_jobs.png)
@@ -81,6 +81,23 @@ Follow these steps to set up and run the Job Portal Project (PHP) locally:
 
 ![Candidate Profile Settings Page](demo/candidate/profile_settings.png)
 *Candidate Profile Settings Page: The page where candidates can manage and update their profile settings.*
+
+**Employer Role**
+
+![employer Dashboard Page](demo/employer/dashboard.png)
+*Employer Dashboard Page: The main dashboard for employers, providing an overview of job postings and applications.*
+
+![employer Post New Job Page](demo/employer/post_new_job.png)
+*Employer Post New Job Page: The page where employers can create and post new job listings.*
+
+![employer Posted Jobs Page](demo/employer/my_jobs.png)
+*Employer Posted Jobs Page: The page displaying all the jobs posted by the employer.*
+
+![employer Applications Page](demo/employer/applications.png)
+*Employer Applications Page: The page where employers can review and manage applications for their job postings.*
+
+![employer Profile Settings Page](demo/employer/profile_settings.png)
+*Employer Profile Settings Page: The page where employers can manage and update their profile settings.*
 
 
 
